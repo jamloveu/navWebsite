@@ -13,4 +13,5 @@
 ## 技术栈
 HTML5、CSS3、原生JS、JSON等。
 
-![演示](http:////p533w93qa.bkt.clouddn.com/navWebsite.jpg)
+![演示](http://p533w93qa.bkt.clouddn.com/navWebsite.jpg)
+
