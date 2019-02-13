@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>导航网站</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-<header>这是一个header</header>
+<header></header>
 <main id="myKeyboard">
 
 </main>
-<footer>这是一个footer</footer>
+<footer></footer>
 
 <script>
     var keys = {
@@ -34,6 +35,11 @@
         b: 'baidu.com', n: undefined, m: undefined
     }
 
+    var hashLocalStorage = JSON.parse(localStorage.getItem("zzz") || '')
+    if(hashLocalStorage){
+        hash = hashLocalStorage
+    }
+
 
     var index = 0
 
@@ -48,13 +54,36 @@
             kbdxxx = document.createElement('kbd')
             divxxx.appendChild(kbdxxx)
             kbdxxx.textContent = keys[index][index2]
+            buttonX = document.createElement('button')
+            kbdxxx.appendChild(buttonX)
+            buttonX.textContent = '编辑'
+            buttonX.id = keys[index][index2]
+
+
+            buttonX.onclick = function (dsadasdsaw) {
+                console.log(dsadasdsaw.target.id)
+
+                var key = dsadasdsaw.target.id
+                var newURL = prompt("请输入新的网址")
+                hash[key] = newURL
+                localStorage.setItem("zzz",JSON.stringify(hash))
+
+            }
+
+
             index2 = index2+1
         }
 
-
-
         index = index+1
 
+    }
+
+    document.onkeypress = function (dsadasdsaw) {
+        var key = dsadasdsaw['key']
+        var website = hash[key]
+        console.log(key)
+        console.log(website)
+        window.open('http://' + website, '_blank')
     }
 
 </script>

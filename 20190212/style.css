@@ -1,0 +1,14 @@
+*{margin: 0; padding: 0;}
+a{text-decoration: none;}
+
+kbd{
+    width: 5em;
+    height: 5em;
+    display: inline-block;
+    text-transform: uppercase;
+    border: 1px solid red;
+}
+
+#myKeyboard div{
+    text-align: center;
+}
