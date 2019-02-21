@@ -1,91 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>导航网站</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header></header>
+    <main id="myKeyboard"></main>
+    <footer></footer>
 
-<header></header>
-<main id="myKeyboard">
-
-</main>
-<footer></footer>
-
-<script>
-    var keys = {
-        0: ['q','w','e','r','t','y','u','i','o','p'],
-        1: ['a','s','d','f','g','h','j','k','l'],
-        2: ['z','x','c','v','b','n','m'],
+    <script>
+      var keys = {
+        0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        1: ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        2: ["z", "x", "c", "v", "b", "n", "m"],
         length: 3
-    }
+      };
 
-    var hash = {
-        q: 'mail.qq.com', w: 'weibo.com', e: 'dribbble.com',
-        r: 'www.people.com.cn', t: 'taobao.com',
-        y: 'www.youtube.com', u: 'bilibili.com',
-        i: 'iqiyi.com', o: 'zealer.com',
-        p: '52pojie.cn', a: 'smzdm.com',
-        s: undefined, d: 'douyu.com',
-        f: 'www.facebook.com', g: 'github.com',
-        h: 'huya.com', j: 'juejin.im',
-        k: undefined, l: undefined, z: 'www.zhihu.com',
-        x: undefined, c: undefined, v: 'www.v2ex.com',
-        b: 'baidu.com', n: undefined, m: undefined
-    }
+      var hash = {
+        q: "mail.qq.com",
+        w: "weibo.com",
+        e: "dribbble.com",
+        r: "www.people.com.cn",
+        t: "taobao.com",
+        y: "www.youtube.com",
+        u: "bilibili.com",
+        i: "iqiyi.com",
+        o: "zealer.com",
+        p: "52pojie.cn",
+        a: "smzdm.com",
+        s: undefined,
+        d: "douyu.com",
+        f: "www.facebook.com",
+        g: "github.com",
+        h: "huya.com",
+        j: "juejin.im",
+        k: undefined,
+        l: undefined,
+        z: "www.zhihu.com",
+        x: undefined,
+        c: undefined,
+        v: "www.v2ex.com",
+        b: "baidu.com",
+        n: undefined,
+        m: undefined
+      };
 
-    var hashLocalStorage = JSON.parse(localStorage.getItem("zzz") || '')
-    if(hashLocalStorage){
-        hash = hashLocalStorage
-    }
+      var hashLocalStorage = JSON.parse(localStorage.getItem("zzz") || "");
+      if (hashLocalStorage) {
+        hash = hashLocalStorage;
+      }
 
+      var index = 0;
 
-    var index = 0
+      while (index < keys.length) {
+        divxxx = document.createElement("div");
+        myKeyboard.appendChild(divxxx);
 
-    while(index < keys.length){
-        divxxx = document.createElement('div')
-        myKeyboard.appendChild(divxxx)
+        var index2 = 0;
 
-        var index2 = 0
+        while (index2 < keys[index].length) {
+          kbdxxx = document.createElement("kbd");
+          divxxx.appendChild(kbdxxx);
+          kbdxxx.textContent = keys[index][index2];
+          buttonX = document.createElement("button");
+          kbdxxx.appendChild(buttonX);
+          buttonX.textContent = "编辑";
+          buttonX.id = keys[index][index2];
 
+          buttonX.onclick = function(dsadasdsaw) {
+            console.log(dsadasdsaw.target.id);
 
-        while(index2 < keys[index].length){
-            kbdxxx = document.createElement('kbd')
-            divxxx.appendChild(kbdxxx)
-            kbdxxx.textContent = keys[index][index2]
-            buttonX = document.createElement('button')
-            kbdxxx.appendChild(buttonX)
-            buttonX.textContent = '编辑'
-            buttonX.id = keys[index][index2]
+            var key = dsadasdsaw.target.id;
+            var newURL = prompt("请输入新的网址");
+            hash[key] = newURL;
+            localStorage.setItem("zzz", JSON.stringify(hash));
+          };
 
-
-            buttonX.onclick = function (dsadasdsaw) {
-                console.log(dsadasdsaw.target.id)
-
-                var key = dsadasdsaw.target.id
-                var newURL = prompt("请输入新的网址")
-                hash[key] = newURL
-                localStorage.setItem("zzz",JSON.stringify(hash))
-
-            }
-
-
-            index2 = index2+1
+          index2 = index2 + 1;
         }
 
-        index = index+1
+        index = index + 1;
+      }
 
-    }
-
-    document.onkeypress = function (dsadasdsaw) {
-        var key = dsadasdsaw['key']
-        var website = hash[key]
-        console.log(key)
-        console.log(website)
-        window.open('http://' + website, '_blank')
-    }
-
-</script>
-</body>
+      document.onkeypress = function(dsadasdsaw) {
+        var key = dsadasdsaw["key"];
+        var website = hash[key];
+        console.log(key);
+        console.log(website);
+        window.open("http://" + website, "_blank");
+      };
+    </script>
+  </body>
 </html>

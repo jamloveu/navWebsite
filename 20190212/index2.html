@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>导航网站</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body>
+<header></header>
+<main id="myKeyboard"></main>
+<footer></footer>
+
+<script>
+    var keys = {
+        0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        1: ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        2: ["z", "x", "c", "v", "b", "n", "m"]
+    };
+    var webHash = {
+        q: "mail.qq.com",
+        w: "weibo.com",
+        e: "dribbble.com",
+        r: "www.people.com.cn",
+        t: "taobao.com",
+        y: "www.youtube.com",
+        u: "bilibili.com",
+        i: "iqiyi.com",
+        o: "zealer.com",
+        p: "52pojie.cn",
+        a: "smzdm.com",
+        s: undefined,
+        d: "douyu.com",
+        f: "www.facebook.com",
+        g: "github.com",
+        h: "huya.com",
+        j: "juejin.im",
+        k: undefined,
+        l: undefined,
+        z: "www.zhihu.com",
+        x: undefined,
+        c: undefined,
+        v: "www.v2ex.com",
+        b: "baidu.com",
+        n: undefined,
+        m: undefined
+    }
+
+    var index = 0;
+    while (index < Object.keys(keys).length){
+        var divX = document.createElement('div')
+        document.getElementById('myKeyboard').appendChild(divX)
+
+        var index2 = 0;
+        while (index2 < keys[index].length){
+            var kbdX = document.createElement('kbd')
+            divX.appendChild(kbdX)
+            kbdX.textContent = keys[index][index2]
+
+            index2 += 1
+        }
+
+        index += 1
+    }
+
+
+</script>
+</body>
+</html>
