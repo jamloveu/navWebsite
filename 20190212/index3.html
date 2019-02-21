@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>导航网站</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body>
+<header></header>
+<main id="myKeyboard"></main>
+<footer></footer>
+
+<script>
+    var keys = {
+        0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        1: ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        2: ["z", "x", "c", "v", "b", "n", "m"]
+    };
+    var webHash = {
+        q: "mail.qq.com",
+        w: "weibo.com",
+        e: "dribbble.com",
+        r: "www.people.com.cn",
+        t: "taobao.com",
+        y: "www.youtube.com",
+        u: "bilibili.com",
+        i: "iqiyi.com",
+        o: "zealer.com",
+        p: "52pojie.cn",
+        a: "smzdm.com",
+        s: undefined,
+        d: "douyu.com",
+        f: "www.facebook.com",
+        g: "github.com",
+        h: "huya.com",
+        j: "juejin.im",
+        k: undefined,
+        l: undefined,
+        z: "www.zhihu.com",
+        x: undefined,
+        c: undefined,
+        v: "www.v2ex.com",
+        b: "baidu.com",
+        n: undefined,
+        m: undefined
+    }
+
+    var hashLocalStorage = JSON.parse(localStorage.getItem("zzz")) || ""
+    if(hashLocalStorage){
+        webHash = hashLocalStorage
+    }
+
+    var index = 0
+    while (index< Object.keys(keys).length){
+        var divXXX = document.createElement("div")
+        myKeyboard.appendChild(divXXX)
+
+        var index2 = 0
+        while(index2< keys[index].length){
+            var kbdXXX = document.createElement("kbd")
+            divXXX.appendChild(kbdXXX)
+            kbdXXX.textContent = keys[index][index2]
+
+            var buttonXXX = document.createElement("button")
+            kbdXXX.appendChild(buttonXXX)
+            buttonXXX.textContent = "编辑"
+            buttonXXX.id = keys[index][index2]
+
+            buttonXXX.onclick = function (hydyhet){
+                var key = hydyhet.target.id
+                var newURL = prompt("请输入新的网址")
+                webHash[key] = newURL
+
+                localStorage.setItem("zzz", JSON.stringify(webHash))
+            }
+
+            index2 += 1
+        }
+
+        index += 1
+    }
+
+    document.onkeypress = function (asdfgs) {
+        var key = asdfgs["key"]
+        var openURL = webHash[key]
+        window.open("http://" + openURL, "_blank")
+    }
+
+</script>
+</body>
+</html>
