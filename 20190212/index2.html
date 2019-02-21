@@ -46,6 +46,12 @@
         m: undefined
     }
 
+    var hashLocalStorage = JSON.parse(localStorage.getItem("localURl")) || ""
+    console.log(hashLocalStorage)
+    if(hashLocalStorage){
+        webHash = hashLocalStorage
+    }
+
     var index = 0;
     while (index < Object.keys(keys).length){
         var divX = document.createElement('div')
@@ -57,12 +63,31 @@
             divX.appendChild(kbdX)
             kbdX.textContent = keys[index][index2]
 
+            var buttonX = document.createElement('button')
+            kbdX.appendChild(buttonX)
+            buttonX.textContent = '编辑'
+            buttonX.id = keys[index][index2]
+
+            buttonX.onclick = function (qwerty){
+                var key = qwerty.target.id
+                var newURL = prompt("请给我一个网址")
+                webHash[key] = newURL
+                localStorage.setItem("localURl",JSON.stringify(webHash))
+            }
+
+
             index2 += 1
         }
 
         index += 1
     }
 
+    document.onkeypress = function (asdfg) {
+        console.log(asdfg)
+        var key = asdfg['key']
+        var openURL = webHash[key]
+        window.open("http://" +openURL,'_blank')
+    }
 
 </script>
 </body>
