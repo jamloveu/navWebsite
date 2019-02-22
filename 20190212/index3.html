@@ -13,43 +13,28 @@
 
 <script>
     //1.初始化数据
-    var keys = {
-        0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
-        1: ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-        2: ["z", "x", "c", "v", "b", "n", "m"]
-    }
-    var webHash = {
-        q: "mail.qq.com",
-        w: "weibo.com",
-        e: undefined,
-        r: undefined,
-        t: "taobao.com",
-        y: "www.youtube.com",
-        u: "bilibili.com",
-        i: "iqiyi.com",
-        o: "zealer.com",
-        p: "52pojie.cn",
-        a: "smzdm.com",
-        s: undefined,
-        d: "douyu.com",
-        f: "www.facebook.com",
-        g: "github.com",
-        h: "huya.com",
-        j: "juejin.im",
-        k: undefined,
-        l: undefined,
-        z: "www.zhihu.com",
-        x: undefined,
-        c: undefined,
-        v: "www.v2ex.com",
-        b: "baidu.com",
-        n: undefined,
-        m: undefined
+    var init = init()
+    var keys = init["keys"]
+    var webHash = init["webHash"]
+
+
+    //2.生成键盘
+    generateKeyboard(keys,webHash)
+
+    //3.监听键盘
+    listenUser(webHash)
+
+
+    //公共函数
+
+    //从localStorage中取数据
+    function getLocalStorage(name) {
+        return JSON.parse(localStorage.getItem(name)) || ""
     }
 
-    var hashLocalStorage = getLocalStorage("zzz")
-    if (hashLocalStorage) {
-        webHash = hashLocalStorage
+    //创建标签
+    function tag(tagName) {
+        return document.createElement(tagName)
     }
 
     function createSpan(textContent) {
@@ -69,7 +54,7 @@
             var img2 = button2.previousSibling
             var key = button2["id"]
             var newURL = prompt("请输入新的网址")
-            if(newURL){
+            if (newURL) {
                 webHash[key] = newURL
             }
             img2.src = "http://" + newURL + "/favicon.ico"
@@ -98,49 +83,89 @@
         return imgXXX
     }
 
-    //2.生成键盘
-    for(var index=0; index < Object.keys(keys).length; index++){
-        var divXXX = tag("div")
-        divXXX.className = "row"
+    function init() {
+        var keys = {
+            0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+            1: ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+            2: ["z", "x", "c", "v", "b", "n", "m"]
+        }
+        var webHash = {
+            q: "mail.qq.com",
+            w: "weibo.com",
+            e: undefined,
+            r: undefined,
+            t: "taobao.com",
+            y: "www.youtube.com",
+            u: "bilibili.com",
+            i: "iqiyi.com",
+            o: "zealer.com",
+            p: "52pojie.cn",
+            a: "smzdm.com",
+            s: undefined,
+            d: "douyu.com",
+            f: "www.facebook.com",
+            g: "github.com",
+            h: "huya.com",
+            j: "juejin.im",
+            k: undefined,
+            l: undefined,
+            z: "www.zhihu.com",
+            x: undefined,
+            c: undefined,
+            v: "www.v2ex.com",
+            b: "baidu.com",
+            n: undefined,
+            m: undefined
+        }
 
-        myKeyboard.appendChild(divXXX)
+        var hashLocalStorage = getLocalStorage("zzz")
+        if (hashLocalStorage) {
+            webHash = hashLocalStorage
+        }
 
-        var row = keys[index]  //数组
-        for(var index2=0; index2 < row.length; index2++){
-            var spanXXX = createSpan(row[index2])
-
-            var buttonXXX = createButton(row[index2])
-
-            var imgXXX = createImg(webHash[row[index2]])
-
-
-            var kbdXXX = tag("kbd")
-            kbdXXX.className = "kbd"
-
-            kbdXXX.appendChild(spanXXX)
-            kbdXXX.appendChild(imgXXX)
-            kbdXXX.appendChild(buttonXXX)
-
-            divXXX.appendChild(kbdXXX)
+        return {
+            "keys": keys,
+            "webHash": webHash
         }
     }
 
+    //生成键盘
+    function generateKeyboard(keys,webHash) {
+        for (var index = 0; index < Object.keys(keys).length; index++) {
+            var divXXX = tag("div")
+            divXXX.className = "row"
 
-    //3.监听键盘
-    document.onkeypress = function (asdfgs) {
-        var key = asdfgs["key"]
-        var openURL = webHash[key]
-        window.open("http://" + openURL, "_blank")
+            myKeyboard.appendChild(divXXX)
+
+            var row = keys[index]  //数组
+            for (var index2 = 0; index2 < row.length; index2++) {
+                var spanXXX = createSpan(row[index2])
+
+                var buttonXXX = createButton(row[index2])
+
+                var imgXXX = createImg(webHash[row[index2]])
+
+
+                var kbdXXX = tag("kbd")
+                kbdXXX.className = "kbd"
+                kbdXXX.appendChild(spanXXX)
+                kbdXXX.appendChild(imgXXX)
+                kbdXXX.appendChild(buttonXXX)
+
+                divXXX.appendChild(kbdXXX)
+            }
+        }
     }
 
-    //公共函数
-    function getLocalStorage(name) {
-        return JSON.parse(localStorage.getItem(name)) || ""
+    //监听用户键盘动作
+    function listenUser(webHash){
+        document.onkeypress = function (asdfgs) {
+            var key = asdfgs["key"]
+            var openURL = webHash[key]
+            window.open("http://" + openURL, "_blank")
+        }
     }
 
-    function tag(tagName) {
-        return document.createElement(tagName)
-    }
 
 </script>
 </body>
