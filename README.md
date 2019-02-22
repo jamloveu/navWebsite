@@ -1,6 +1,6 @@
 ## PC端导航网站
 
-该项目是使用原生JS写的一个导航网站。[预览链接](https://jamccc.github.io/navWebsite/ "预览链接")
+该项目是使用原生JS写的一个导航网站。[预览链接](https://jamccc.github.io/navWebsite/old "预览链接")
 
 ### 功能介绍
 1、按下键盘按键后在新的窗口打开对应的网站
