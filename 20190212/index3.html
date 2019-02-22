@@ -5,7 +5,6 @@
     <title>导航网站</title>
     <link rel="stylesheet" href="./style.css"/>
 </head>
-
 <body>
 <header></header>
 <main id="myKeyboard"></main>
@@ -17,13 +16,11 @@
     var keys = init["keys"]
     var webHash = init["webHash"]
 
-
     //2.生成键盘
     generateKeyboard(keys,webHash)
 
     //3.监听键盘
     listenUser(webHash)
-
 
     //公共函数
 
@@ -83,6 +80,44 @@
         return imgXXX
     }
 
+    //生成键盘
+    function generateKeyboard(keys,webHash) {
+        for (var index = 0; index < Object.keys(keys).length; index++) {
+            var divXXX = tag("div")
+            divXXX.className = "row"
+
+            myKeyboard.appendChild(divXXX)
+
+            var row = keys[index]  //数组
+            for (var index2 = 0; index2 < row.length; index2++) {
+                var spanXXX = createSpan(row[index2])
+
+                var buttonXXX = createButton(row[index2])
+
+                var imgXXX = createImg(webHash[row[index2]])
+
+
+                var kbdXXX = tag("kbd")
+                kbdXXX.className = "kbd"
+                kbdXXX.appendChild(spanXXX)
+                kbdXXX.appendChild(imgXXX)
+                kbdXXX.appendChild(buttonXXX)
+
+                divXXX.appendChild(kbdXXX)
+            }
+        }
+    }
+
+    //监听用户键盘动作
+    function listenUser(webHash){
+        document.onkeypress = function (asdfgs) {
+            var key = asdfgs["key"]
+            var openURL = webHash[key]
+            window.open("http://" + openURL, "_blank")
+        }
+    }
+
+    //初始化的数据
     function init() {
         var keys = {
             0: ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -128,44 +163,6 @@
             "webHash": webHash
         }
     }
-
-    //生成键盘
-    function generateKeyboard(keys,webHash) {
-        for (var index = 0; index < Object.keys(keys).length; index++) {
-            var divXXX = tag("div")
-            divXXX.className = "row"
-
-            myKeyboard.appendChild(divXXX)
-
-            var row = keys[index]  //数组
-            for (var index2 = 0; index2 < row.length; index2++) {
-                var spanXXX = createSpan(row[index2])
-
-                var buttonXXX = createButton(row[index2])
-
-                var imgXXX = createImg(webHash[row[index2]])
-
-
-                var kbdXXX = tag("kbd")
-                kbdXXX.className = "kbd"
-                kbdXXX.appendChild(spanXXX)
-                kbdXXX.appendChild(imgXXX)
-                kbdXXX.appendChild(buttonXXX)
-
-                divXXX.appendChild(kbdXXX)
-            }
-        }
-    }
-
-    //监听用户键盘动作
-    function listenUser(webHash){
-        document.onkeypress = function (asdfgs) {
-            var key = asdfgs["key"]
-            var openURL = webHash[key]
-            window.open("http://" + openURL, "_blank")
-        }
-    }
-
 
 </script>
 </body>
