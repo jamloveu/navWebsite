@@ -47,27 +47,37 @@
     }
 
     var hashLocalStorage = JSON.parse(localStorage.getItem("zzz")) || ""
-    if(hashLocalStorage){
+    if (hashLocalStorage) {
         webHash = hashLocalStorage
     }
 
     var index = 0
-    while (index< Object.keys(keys).length){
+    while (index < Object.keys(keys).length) {
         var divXXX = document.createElement("div")
         myKeyboard.appendChild(divXXX)
 
         var index2 = 0
-        while(index2< keys[index].length){
-            var kbdXXX = document.createElement("kbd")
-            divXXX.appendChild(kbdXXX)
-            kbdXXX.textContent = keys[index][index2]
+        while (index2 < keys[index].length) {
 
+            var kbdXXX = document.createElement("kbd")
+            var spanXXX = document.createElement("span")
             var buttonXXX = document.createElement("button")
-            kbdXXX.appendChild(buttonXXX)
+            var imgXXX = document.createElement("img")
+
+            spanXXX.textContent = keys[index][index2]
+            spanXXX.className = "text"
             buttonXXX.textContent = "编辑"
             buttonXXX.id = keys[index][index2]
+            imgXXX.src = "http://" + webHash[keys[index][index2]] + "/favicon.ico"
 
-            buttonXXX.onclick = function (hydyhet){
+
+            divXXX.appendChild(kbdXXX)
+            kbdXXX.appendChild(spanXXX)
+            kbdXXX.appendChild(buttonXXX)
+            kbdXXX.appendChild(imgXXX)
+
+
+            buttonXXX.onclick = function (hydyhet) {
                 var key = hydyhet.target.id
                 var newURL = prompt("请输入新的网址")
                 webHash[key] = newURL
@@ -90,3 +100,5 @@
 </script>
 </body>
 </html>
+
+
