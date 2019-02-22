@@ -20,7 +20,7 @@ kbd:hover > button{
   border-radius: 10px;
 }
 body{
-  background: grey url(./wall.jpg) no-repeat center center;
+  background: grey url(wall.jpg) no-repeat center center;
   background-size: cover;
 }
 main{
