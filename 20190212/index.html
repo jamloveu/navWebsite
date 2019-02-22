@@ -47,13 +47,18 @@
         m: undefined
       };
 
-      var hashLocalStorage = JSON.parse(localStorage.getItem("zzz") || "");
+      var hashLocalStorage = getLocalStorage("zzz")
       if (hashLocalStorage) {
         hash = hashLocalStorage;
       }
 
-      var index = 0;
 
+      function getLocalStorage(name) {
+         return JSON.parse(localStorage.getItem(name) || "null");
+      }
+
+
+      var index = 0;
       while (index < Object.keys(keys).length) {
         divxxx = document.createElement("div");
         myKeyboard.appendChild(divxxx);
