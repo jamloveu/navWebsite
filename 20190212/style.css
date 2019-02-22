@@ -1,14 +1,84 @@
 *{margin: 0; padding: 0;}
 a{text-decoration: none;}
-
 kbd{
     width: 5em;
     height: 5em;
     display: inline-block;
-    text-transform: uppercase;
-    border: 1px solid red;
+    text-transform: uppercase; //仅有大写字母
+position: relative;
+}
+kbd >button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: none;
+
+}
+kbd:hover > button{
+    display: inline-block;
+    padding: 0 2px;
+    border-radius: 10px;
+}
+body{
+    background: grey url(./wall.jpg) no-repeat center center;
+    background-size: cover;
+}
+main{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#main{
+    display: inline-block;
+
+}
+.wrapper{
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0px 7px 10px 2px rgba(0,0,0,0.75);
+
+}
+.wrapper .row .key:hover{
+    transform: scale(1.1)
+}
+#main > div:nth-child(2){
+    margin-left: -4px;
+}
+#main > div:nth-child(3){
+    margin-left: -70px;
 }
 
-#myKeyboard div{
-    text-align: center;
+.key{
+    height: 46px;
+    width: 56px;
+    background: linear-gradient(to right, rgba(237,237,237,1) 0%,rgba(237,237,237,1) 13%,rgba(246,246,246,1) 87%,rgba(255,255,255,1) 99%,rgba(246,246,246,1) 100%);
+    border: 1px solid #373737;
+    color: #FAFAFA;
+    border-radius: 6px;
+    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.75);
+    font-size: 16px;
+    font-family: Helvetica;
+    position: relative;
+}
+
+.key img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 4px;
+    bottom: 2px;
+}
+.key .text{
+    position: absolute;
+    left: 4px;
+    top: 2px;
+    color: black;
+}
+.row{
+    margin: 20px;
+}
+.row .key{
+    margin: 0 6px;
 }
